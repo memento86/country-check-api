@@ -6,6 +6,8 @@ use App\Controller\Api\BaseController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Contracts\Translation\TranslatorInterface;
+use App\Exception\MyException;
 
 /**
  * Description of CheckCountry
@@ -16,17 +18,19 @@ class CheckCountry extends BaseController
 {
 
 	private Request $request;
+	private TranslatorInterface $translator;
 
-	public function __construct(RequestStack $request)
+	public function __construct(RequestStack $request, TranslatorInterface $translator)
 	{
 		$this->request = $request->getCurrentRequest();
+		$this->translator = $translator;
 	}
 
 	public function __invoke()
 	{
 		$countryCode = $this->request->query->get('country-code');
 		if (empty($countryCode)) {
-			throw new \Exception();
+			throw new MyException($this->translator->trans('error.field_country_code_empty'));
 		}
 
 		return $this->getSuccessfulResponse(['code' => 0]);

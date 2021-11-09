@@ -1,0 +1,2 @@
+error.common: 'Se ha producido un error'
+error.field_country_code_empty: El campo country-code es obligatorio

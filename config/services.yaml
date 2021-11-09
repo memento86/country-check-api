@@ -4,7 +4,9 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-
+    app.api_rest_countries_url: '%env(string:APP_API_REST_COUNTRIES_URL)%'
+    app.api_rest_countries_key: '%env(string:APP_API_REST_COUNTRIES_KEY)%'
+    
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -23,3 +25,9 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    # Listener to capture exceptions
+    App\EventListener\ExceptionListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception }
+
