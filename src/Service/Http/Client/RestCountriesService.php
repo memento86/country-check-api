@@ -49,7 +49,7 @@ class RestCountriesService
 			throw new MyException($this->translator->trans('error.common'));
 		}
 
-		return $apiResponse->toArray();
+		return $apiResponse->toArray()[0];
 	}
 
 	/**
