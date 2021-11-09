@@ -34,8 +34,8 @@ class ExceptionListener
 		// HttpExceptionInterface is a special type of exception that
 		// holds status code and header details
 		if ($exception instanceof HttpExceptionInterface) {
-			$response->setStatusCode($exception->getStatusCode());
-			$response->headers->replace($exception->getHeaders());
+			$statusCode = $exception->getStatusCode();
+			$headers = $exception->getHeaders();
 		} elseif ($exception instanceof MyException) {
 			$statusCode = JsonResponse::HTTP_BAD_REQUEST;
 			$content['message'] = $exception->getMessage();
@@ -50,6 +50,8 @@ class ExceptionListener
 		
 		// sends the modified response object to the event
 		$event->setResponse($response);
+		
+		//TODO: save log
 	}
 
 }
