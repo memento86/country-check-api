@@ -7,7 +7,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Component\Serializer\SerializerInterface;
 use App\Exception\MyException;
+use App\Service\CheckCountryService;
+use App\Dto\CheckCountryDto;
 
 /**
  * Description of CheckCountry
@@ -19,11 +22,19 @@ class CheckCountry extends BaseController
 
 	private Request $request;
 	private TranslatorInterface $translator;
+	private SerializerInterface $serializer;
+	private CheckCountryService $checkCountryService;
 
-	public function __construct(RequestStack $request, TranslatorInterface $translator)
+	public function __construct(
+			RequestStack $request,
+			TranslatorInterface $translator,
+			SerializerInterface $serializer,
+			CheckCountryService $checkCountryService)
 	{
 		$this->request = $request->getCurrentRequest();
 		$this->translator = $translator;
+		$this->serializer = $serializer;
+		$this->checkCountryService = $checkCountryService;
 	}
 
 	public function __invoke()
@@ -32,8 +43,10 @@ class CheckCountry extends BaseController
 		if (empty($countryCode)) {
 			throw new MyException($this->translator->trans('error.field_country_code_empty'));
 		}
+		
+		$checkCountryDto = $this->checkCountryService->evaluate($countryCode);
 
-		return $this->getSuccessfulResponse(['code' => 0]);
+		return $this->getSuccessfulResponse($checkCountryDto);
 	}
 
 }

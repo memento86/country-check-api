@@ -12,7 +12,7 @@ use App\Exception\MyException;
  *
  * @author memento
  */
-class RestCountries
+class RestCountriesService
 {
 
 	private HttpClientInterface $httpClient;

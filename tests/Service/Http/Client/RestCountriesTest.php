@@ -7,7 +7,7 @@ use Mockery;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-use App\Service\Http\Client\RestCountries;
+use App\Service\Http\Client\RestCountriesService;
 
 class RestCountriesTest extends TestCase
 {
@@ -51,7 +51,7 @@ class RestCountriesTest extends TestCase
 				->with('error.common')
 				->willReturn('error');
 
-		$restCountriesService = new RestCountries($httpClient, $parameterBag, $translator);
+		$restCountriesService = new RestCountriesService($httpClient, $parameterBag, $translator);
 		$countryData = $restCountriesService->getData('ES');
 
 		$this->assertArrayHasKey('name', $countryData[0]);

@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use App\Service\Http\Client\RestCountries;
+use App\Service\Http\Client\RestCountriesService;
 
 class RestCountriesKernelTest extends KernelTestCase
 {
@@ -21,7 +21,7 @@ class RestCountriesKernelTest extends KernelTestCase
 		$parameterBag = $container->get(ParameterBagInterface::class);
 		$translator = $container->get(TranslatorInterface::class);
 		
-		$restCountriesService = new RestCountries($httpClient, $parameterBag, $translator);
+		$restCountriesService = new RestCountriesService($httpClient, $parameterBag, $translator);
 		$countryData = $restCountriesService->getData('ES');
 
 		$this->assertIsArray($countryData);
