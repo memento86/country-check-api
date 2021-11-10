@@ -36,11 +36,19 @@ $ ./bin/phpunit tests
 
 Se ha exportado el proyecto de pruebas en el fichero api_freepik.postman_collection.
 
-Se ha implementado un listener para capturar y procesar las excepciones producidas en la aplicación.
+## Documetación OpenApi
+
+Se ha implementado documentación en formato OpenApi. Se puede visualizar tanto en formato html como json.
+
+http://api.freepik.test/api/doc
+
+http://api.freepik.test/api/doc.json
 
 ## Aclaraciones
 
 Para dar soporte a diferentes tipos de criterios, se ha empleado el patrón Factory Method.
+
+Se ha implementado un listener para capturar y procesar las excepciones producidas en la aplicación.
 
 ## Posibles mejoras
 
