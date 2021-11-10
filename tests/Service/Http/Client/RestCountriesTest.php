@@ -12,8 +12,8 @@ use App\Service\Http\Client\RestCountriesService;
 class RestCountriesTest extends TestCase
 {
 
-	public function testMock(): void
-	{
+//	public function testMock(): void
+//	{
 //		$response = json_encode([
 //			'result' => true,
 //			'criteria' => [
@@ -28,7 +28,7 @@ class RestCountriesTest extends TestCase
 //		$mock->shouldReceive('getData')->with('ES')->andReturn($response);
 //
 //		$this->assertEquals($response, $mock->getData('ES'));
-	}
+//	}
 
 	public function testMockGetData(): void
 	{
@@ -52,9 +52,9 @@ class RestCountriesTest extends TestCase
 				->willReturn('error');
 
 		$restCountriesService = new RestCountriesService($httpClient, $parameterBag, $translator);
-		$countryData = $restCountriesService->getData('ES');
+		$countryData = $restCountriesService->getData('es');
 
-		$this->assertArrayHasKey('name', $countryData[0]);
+		$this->assertArrayHasKey('name', $countryData);
 	}
 
 	protected function tearDown(): void

@@ -25,7 +25,7 @@ class RestCountriesKernelTest extends KernelTestCase
 		$countryData = $restCountriesService->getData('ES');
 
 		$this->assertIsArray($countryData);
-		$this->assertArrayHasKey('name', $countryData[0]);
-		$this->assertEquals('Spain', $countryData[0]['name']['common']);
+		$this->assertArrayHasKey('name', $countryData);
+		$this->assertEquals('Spain', $countryData['name']['common']);
 	}
 }

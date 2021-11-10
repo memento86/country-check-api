@@ -3,7 +3,6 @@
 namespace App\Service\Criteria;
 
 use App\Service\Criteria\CriteriaInterface;
-use App\Service\Http\Client\RestCountriesService;
 
 /**
  * Class that evaluates if country is in Asia region and has a population greater than 80,000 persons

@@ -25,7 +25,6 @@ class CheckCountryTest extends WebTestCase
 		$mock->shouldReceive('__invoke')->andReturn($response);
 
 		$this->assertEquals($response, $mock->__invoke());
-		$this->assert($response, $mock->__invoke());
 	}
 
 	public function testRequest(): void
