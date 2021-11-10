@@ -5,14 +5,13 @@ namespace App\Service\Http\Client;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use App\Service\Http\Client\RestCountriesInterface;
 use App\Exception\MyException;
 
 /**
  * Description of RestCountries
- *
- * @author memento
  */
-class RestCountriesService
+class RestCountriesService implements RestCountriesInterface
 {
 
 	private HttpClientInterface $httpClient;
