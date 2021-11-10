@@ -37,7 +37,7 @@ class ExceptionListener
 			$statusCode = $exception->getStatusCode();
 			$headers = $exception->getHeaders();
 		} elseif ($exception instanceof MyException) {
-			$statusCode = JsonResponse::HTTP_BAD_REQUEST;
+			$statusCode = $exception->getCode() != 0 ? $exception->getCode() : JsonResponse::HTTP_BAD_REQUEST;
 			$content['message'] = $exception->getMessage();
 		}
 
