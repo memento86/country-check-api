@@ -70,7 +70,7 @@ class RestCountriesService implements RestCountriesInterface
 			'max_redirects' => 10,
 			'timeout' => 30,
 		]);
-		
+
 		return $apiResponse;
 	}
 

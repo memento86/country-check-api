@@ -7,6 +7,7 @@ use App\Dto\CheckCountryDto;
 use App\Dto\CriteriaDto;
 use App\Service\Criteria\ServiceFactory as CriteriaServiceFactory;
 use App\Service\Criteria\CriteriaInterface;
+use App\Util\CamelCase;
 
 /**
  * 
@@ -54,7 +55,7 @@ class CheckCountryService
 			$criteriaService = $this->criteriaServiceFactory->getService($criteriaType);
 			$criteriaResult = $criteriaService->evaluate($countryCode, $restCountryResponse);
 			
-			$method = 'set' . ucwords(strtolower($criteriaType));
+			$method = 'set' . CamelCase::transformSingleWord($criteriaType);
 			$criteriaDto->$method($criteriaResult);
 			
 			if(!$criteriaResult){
@@ -73,7 +74,7 @@ class CheckCountryService
 	{
 		$result = true;
 		foreach (self::CRITERIA_TYPES as $criteriaType) {
-			$method = 'get' . ucwords(strtolower($criteriaType));
+			$method = 'get' . CamelCase::transformSingleWord($criteriaType);
 			if (false === $criteriaDto->$method()) {
 				$result = false;
 				break;
